@@ -1,0 +1,6 @@
+{
+  "rules": [
+    {"name": "金价上破 4300", "op": "above", "level": 4300, "enabled": true},
+    {"name": "金价下破 3700", "op": "below", "level": 3700, "enabled": true}
+  ]
+}

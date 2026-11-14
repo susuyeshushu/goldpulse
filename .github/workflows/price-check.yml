@@ -1,0 +1,42 @@
+name: price-check
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: price-check
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch price & evaluate alerts
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python fetch_price.py
+
+      - name: Write result back to repo
+        run: |
+          cp data/last_check.json docs/data.json
+          git config user.name "goldpulse-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/last_check.json docs/data.json)" ]; then
+            git add data/last_check.json docs/data.json
+            git commit -m "chore: price check $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          else
+            echo "no change to commit"
+          fi

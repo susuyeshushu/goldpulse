@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GoldPulse 金价哨兵</title>
+<style>
+:root{color-scheme:dark}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0d1117;color:#e6edf3;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.card{max-width:560px;width:90%;padding:44px;background:#161b22;border:1px solid #30363d;border-radius:16px}
+h1{margin:12px 0 4px;font-size:26px}
+p{color:#8b949e;line-height:1.7;font-size:15px}
+.price{font-size:52px;font-weight:800;color:#f0b429;margin:18px 0 6px;font-variant-numeric:tabular-nums}
+.meta{font-size:13px;color:#8b949e}
+.tag{display:inline-block;background:#1a7f3733;color:#3fb950;border:1px solid #238636;border-radius:99px;padding:3px 12px;font-size:13px}
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="tag">MVP · 每 30 分钟自动更新</span>
+  <h1>GoldPulse 金价哨兵</h1>
+  <div class="price" id="price">--</div>
+  <div class="meta" id="meta">正在读取最新金价…</div>
+  <p>多源抓取现货金价（自动降级），跌破 / 上破你设定的价位立即推送提醒。</p>
+</div>
+<script>
+fetch('data.json').then(r=>r.json()).then(d=>{
+  document.getElementById('price').textContent='$'+d.price.toLocaleString();
+  document.getElementById('meta').textContent=d.source+' · '+d.ts+' UTC';
+}).catch(()=>{
+  document.getElementById('price').textContent='--';
+  document.getElementById('meta').textContent='首次自动运行尚未完成，稍后再来';
+});
+</script>
+</body>
+</html>
