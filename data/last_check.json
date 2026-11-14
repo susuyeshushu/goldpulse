@@ -1,0 +1,11 @@
+{
+  "ts": "2026-11-14T14:28:38Z",
+  "price": 4155.92,
+  "source": "binance.us-paxg",
+  "all_sources": {
+    "binance.us-paxg": 4155.92,
+    "binance.com-paxg": null,
+    "goldprice.org": null
+  },
+  "fired": []
+}
