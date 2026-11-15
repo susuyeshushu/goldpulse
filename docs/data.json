@@ -1,9 +1,9 @@
 {
-  "ts": "2026-11-14T23:16:03Z",
-  "price": 4126.42,
+  "ts": "2026-11-15T02:57:40Z",
+  "price": 3854.71,
   "source": "binance.us-paxg",
   "all_sources": {
-    "binance.us-paxg": 4126.42,
+    "binance.us-paxg": 3854.71,
     "binance.com-paxg": null,
     "goldprice.org": null
   },
