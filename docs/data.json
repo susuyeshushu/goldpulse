@@ -1,9 +1,9 @@
 {
-  "ts": "2026-11-22T01:00:13Z",
-  "price": 3557.42,
+  "ts": "2026-11-22T08:35:17Z",
+  "price": 3532.2,
   "source": "binance.us-paxg",
   "all_sources": {
-    "binance.us-paxg": 3557.42,
+    "binance.us-paxg": 3532.2,
     "binance.com-paxg": null,
     "goldprice.org": null
   },
@@ -12,7 +12,7 @@
       "name": "金价下破 3700",
       "op": "below",
       "level": 3700.0,
-      "price": 3557.42
+      "price": 3532.2
     }
   ]
 }
